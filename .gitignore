@@ -1,12 +1,22 @@
-# Unity generated files
-/Nexus/Library/
-/Nexus/Temp/
-/Nexus/obj/
-/Nexus/Logs/
-/Nexus/UserSettings/
-/Nexus/MemoryCaptures/
+# Unity generated files - Complete list
+src/Nexus/Library/
+src/Nexus/Temp/
+src/Nexus/obj/
+src/Nexus/Logs/
+src/Nexus/UserSettings/
+src/Nexus/MemoryCaptures/
+src/Nexus/.vscode/
 
-# Unity3D File Types
+# General Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity3D File Types - but KEEP our project files
 *.unity
 *.unityproj
 *.sln
@@ -19,10 +29,15 @@
 !/src/ProjectSettings/**/*.meta
 !/src/Packages/
 !/src/Packages/**/*.meta
+!/src/Nexus.slnx
 
 # Visual Studio / Rider files
 .vs/
 .idea/
+
+# VS Code (Unity specific)
+.vscode/
+*.code-workspace
 
 # OS generated files
 .DS_Store
@@ -36,6 +51,7 @@ Thumbs.db
 # CTO Oracle - Don't commit session data
 /context/current_session.json
 /context/session_log.json
+/context/*.log
 
 # Python
 __pycache__/
