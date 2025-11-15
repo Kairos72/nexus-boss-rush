@@ -22,7 +22,6 @@ This project uses an innovative AI-powered development model:
 
 ```
 Nexus/
-├── src/                    # Unity game source code
 ├── docs/                   # Living documentation
 │   ├── project_vision.md   # Executive vision and strategy
 │   ├── decisions/          # Architectural decision records
@@ -30,18 +29,21 @@ Nexus/
 ├── context/                # Auto-updated project context
 │   └── current_session.json
 ├── cto_prompts/            # CTO Oracle role definitions
-└── nexus_cto/              # CTO Oracle Python modules
-    └── src/                # Implementation of AI CTO systems
+├── nexus_cto/              # CTO Oracle Python modules
+│   └── src/                # Implementation of AI CTO systems
+├── CLAUDE.md               # AI development guidance
+├── README.md               # Project overview
+└── text_boss_rush_gdd.md   # Complete game design document
 ```
 
 ## Technology Stack
 
-- **Engine**: Unity 2022 LTS (v6000.2.12f1)
-- **Language**: C# (.NET Standard 2.1)
-- **Platform**: iOS, Android (mobile-first)
-- **Input System**: Unity Input System (v1.14.2)
-- **Multiplayer**: Unity Multiplay (Netcode for GameObjects)
-- **Architecture**: ECS with DOTS for performance-critical systems
+- **Platform**: Mobile (iOS & Android)
+- **Input**: Touch-based tap interface
+- **Architecture**: State machines for boss patterns
+- **Data Format**: JSON for bosses, upgrades, decisions
+- **Storage**: PlayerPrefs for save/load
+- **Framework**: TBD (Unity for UI, or web-based solution)
 
 ## Development Workflow
 

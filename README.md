@@ -21,10 +21,11 @@ Nexus/
 │   ├── architecture/    # System design documents
 │   ├── decisions/       # Architectural decision log
 │   └── roadmap/         # Project roadmap and milestones
-├── src/                 # Game source code (Unity project will go here)
 ├── context/             # Session-specific state and focus
 ├── cto_prompts/         # CTO role definitions and frameworks
-└── README.md           # This file
+├── CLAUDE.md           # AI development guidance
+├── README.md           # This file
+└── text_boss_rush_gdd.md # Complete game design document
 ```
 
 ### Using the CTO Oracle
@@ -63,11 +64,11 @@ status = cto.get_status_report()
 print(status)
 
 # Make a decision
-decision = cto.make_decision("Should we use DOTween or native Unity animations?")
+decision = cto.make_decision("What framework should we use for the text interface?")
 print(decision)
 
 # Update progress
-cto.update_progress("M1", "In Progress", "Unity setup complete, starting character controller")
+cto.update_progress("M1", "In Progress", "Text prototype started - Stone Guardian combat")
 ```
 
 ### Documentation Philosophy
