@@ -1,197 +1,214 @@
 {
-  "project": "Nexus: Boss Rush",
-  "duration": "8 months",
-  "budget": "$50,000 - $80,000",
-  "last_updated": "2025-11-15",
+  "project": "Nexus: Trial of Champions",
+  "duration": "4-6 months",
+  "budget": "$700 - $1,500",
+  "last_updated": "2025-11-16",
+  "pivot": "Switched to text-based design for faster development and lower costs",
   "phases": {
-    "Phase 1: Prototype": {
-      "duration": "Months 1-2",
-      "goal": "Prove combat feels good and boss mechanics work on mobile",
-      "budget": "$5,000 - $10,000",
+    "Phase 1: Text Prototype": {
+      "duration": "Month 1",
+      "goal": "Prove text-based combat is compelling and patterns work",
+      "budget": "$100 - $200",
       "status": "Not Started",
       "milestones": [
         {
           "id": "M1",
-          "title": "Basic Movement + Combat",
-          "target_date": "Month 1, Week 4",
+          "title": "Basic Text Combat Engine",
+          "target_date": "Month 1, Week 2",
           "status": "Not Started",
           "deliverables": [
-            "Unity project setup with mobile configuration",
-            "Character controller with virtual joystick",
-            "Dodge roll with i-frames",
-            "One basic attack ability",
-            "Mobile input handling with haptic feedback"
+            "Simple text interface with decision buttons",
+            "Basic state machine for boss patterns",
+            "Stone Guardian with 3 attack patterns",
+            "Player HP/MP system",
+            "Attack, Defend, Dodge choices"
           ],
           "acceptance_criteria": [
-            "Character moves responsively on mobile devices",
-            "Dodge roll feels good with haptic feedback",
-            "Attack connects with satisfying impact",
-            "60 FPS stable on target devices"
+            "Text displays clearly on mobile screens",
+            "Choices are responsive and intuitive",
+            "Player can lose and recognize pattern",
+            "Victory feels earned through knowledge"
           ]
         },
         {
           "id": "M2",
-          "title": "First Boss Complete",
-          "target_date": "Month 2, Week 4",
+          "title": "Stone Guardian Complete",
+          "target_date": "Month 1, Week 4",
           "status": "Not Started",
           "deliverables": [
-            "Stone Guardian boss with all mechanics",
-            "Cleave attack with clear telegraph",
-            "Ground Pound AOE with distance check",
-            "Rock Throw projectile with dodge timing",
+            "Full Stone Guardian encounter",
             "Phase transition at 50% HP",
-            "Basic HP bars and combat UI"
+            "5 attack patterns with telegraphs",
+            "Victory/defeat screens",
+            "Basic atmospheric writing"
           ],
           "acceptance_criteria": [
-            "Boss feels challenging but fair",
-            "Telegraphs are clear and readable on mobile",
-            "5+ playtesters defeat boss after 3-5 attempts",
-            "Combat feels satisfying and responsive",
-            "No crashes during boss encounter"
+            "First playthrough results in death",
+            "Second playthrough shows pattern recognition",
+            "Third playthrough achieves victory",
+            "Experience feels fair, not cheap"
           ]
         }
       ]
     },
-    "Phase 2: Vertical Slice": {
-      "duration": "Months 3-4",
+    "Phase 2: Demo Build": {
+      "duration": "Month 2",
       "goal": "Complete 3-boss demo (free version)",
-      "budget": "$10,000 - $15,000",
+      "budget": "$200 - $300",
       "status": "Not Started",
       "milestones": [
         {
           "id": "M3",
           "title": "3 Bosses Complete",
-          "target_date": "Month 3, Week 4",
+          "target_date": "Month 2, Week 3",
           "status": "Not Started",
           "deliverables": [
-            "Flame Archon with DOT mechanics",
-            "Ice Witch with debuff system",
-            "All 3 starting classes implemented",
-            "Class-specific abilities and playstyles",
-            "Basic roguelike upgrade system"
+            "Stone Guardian (tutorial boss)",
+            "Flame Archon (DOT mechanics)",
+            "Ice Witch (debuff management)",
+            "Basic roguelike upgrade system",
+            "Save system between bosses"
+          ],
+          "acceptance_criteria": [
+            "Each boss teaches distinct mechanic",
+            "Difficulty curve feels right",
+            "15-20 minute demo experience",
+            "Players want to continue after Ice Witch"
           ]
         },
         {
           "id": "M4",
           "title": "Demo Feature Complete",
-          "target_date": "Month 4, Week 4",
+          "target_date": "Month 2, Week 4",
           "status": "Not Started",
           "deliverables": [
-            "Tutorial and onboarding flow",
-            "Main menu and settings screens",
-            "Save system for progress",
-            "Performance optimization for target devices",
+            "Main menu and settings",
+            "Mobile-optimized UI (portrait mode)",
+            "Basic sound effects",
+            "Boss portraits (AI-generated)",
             "Build for iOS and Android"
           ],
           "acceptance_criteria": [
-            "20+ playtesters complete all 3 bosses",
-            "Average session length: 15-20 minutes",
-            "70%+ say they'd pay $12.99 for full game",
             "No crashes on target devices",
-            "Builds successfully for both platforms"
+            "Text is readable on all screen sizes",
+            "Buttons are easy to tap",
+            "UI feels premium and polished"
           ]
         }
       ]
     },
-    "Phase 3: Content Sprint": {
-      "duration": "Months 5-6",
+    "Phase 3: Full Game": {
+      "duration": "Months 3-4",
       "goal": "Complete all 10 bosses, all systems",
-      "budget": "$15,000 - $25,000",
+      "budget": "$300 - $500",
       "status": "Not Started",
       "milestones": [
         {
           "id": "M5",
           "title": "All Bosses Implemented",
-          "target_date": "Month 5, Week 4",
+          "target_date": "Month 3, Week 4",
           "status": "Not Started",
           "deliverables": [
             "Bosses 4-10 with unique mechanics",
-            "All boss environments and VFX",
-            "Boss AI patterns and difficulty scaling",
-            "Final boss with multi-phase mechanics"
+            "All boss patterns and phases",
+            "5 playable classes (3 starting, 2 unlockable)",
+            "Class-specific decision options",
+            "Full upgrade pool (50+ upgrades)"
+          ],
+          "acceptance_criteria": [
+            "Each boss feels unique",
+            "Class differentiation is clear",
+            "Upgrade synergies exist",
+            "25-35 minute full run length"
           ]
         },
         {
           "id": "M6",
           "title": "All Systems Complete",
-          "target_date": "Month 6, Week 4",
+          "target_date": "Month 4, Week 4",
           "status": "Not Started",
           "deliverables": [
             "Hard and Nightmare difficulties",
-            "Achievement system with 50+ achievements",
-            "Cosmetic unlock system",
-            "Challenge modes (Boss Rush Remix, Daily)",
-            "Full progression systems"
+            "Achievement system (50+ achievements)",
+            "Challenge modes (Daily, Boss Rush)",
+            "Unlock system for classes/cosmetics",
+            "Complete progression tracking"
           ]
         }
       ]
     },
     "Phase 4: Polish & Testing": {
-      "duration": "Month 7",
+      "duration": "Month 5",
       "goal": "Beta-ready build, bug-free, polished",
-      "budget": "$5,000 - $10,000",
+      "budget": "$50 - $200",
       "status": "Not Started",
       "milestones": [
         {
           "id": "M7",
-          "title": "Beta Ready",
-          "target_date": "Month 7, Week 2",
+          "title": "Beta Testing",
+          "target_date": "Month 5, Week 2",
           "status": "Not Started",
           "deliverables": [
-            "Closed beta with 50-100 testers",
-            "Bug count under 20 critical issues",
-            "Performance 60 FPS stable",
-            "Feedback collection system"
+            "Closed beta with 20-50 testers",
+            "Writing review for consistency",
+            "Balance adjustments based on feedback",
+            "Bug fixes and text corrections"
+          ],
+          "acceptance_criteria": [
+            "90%+ clear rate on Normal difficulty",
+            "25-35% conversion intent in surveys",
+            "No spelling/grammar errors",
+            "All crashes eliminated"
           ]
         },
         {
           "id": "M8",
           "title": "Launch Ready",
-          "target_date": "Month 7, Week 4",
+          "target_date": "Month 5, Week 4",
           "status": "Not Started",
           "deliverables": [
-            "Final polish and optimization",
-            "Store assets and descriptions ready",
-            "Marketing materials complete",
-            "Press kit and launch plan ready"
+            "App store assets and descriptions",
+            "Final balance polish",
+            "Marketing screenshots",
+            "Press release and launch plan"
           ]
         }
       ]
     },
     "Phase 5: Launch": {
-      "duration": "Month 8",
+      "duration": "Month 6",
       "goal": "Successful launch with strong conversion",
-      "budget": "$10,000 - $20,000",
+      "budget": "$50 - $300",
       "status": "Not Started",
       "milestones": [
         {
           "id": "M9",
-          "title": "Soft Launch Complete",
-          "target_date": "Month 8, Week 2",
+          "title": "Soft Launch",
+          "target_date": "Month 6, Week 2",
           "status": "Not Started",
           "deliverables": [
-            "Launch in 2-3 test regions",
-            "Initial metrics analysis and iteration",
-            "Performance monitoring and bug fixes",
-            "Store optimization based on data"
+            "Launch in 1-2 test regions",
+            "Initial conversion rate tracking",
+            "Performance monitoring",
+            "Store page optimization"
           ]
         },
         {
           "id": "M10",
           "title": "Global Launch",
-          "target_date": "Month 8, Week 4",
+          "target_date": "Month 6, Week 4",
           "status": "Not Started",
           "deliverables": [
-            "Worldwide release on iOS and Android",
-            "Marketing campaign execution",
-            "Community management active",
-            "First-week success metrics tracking"
+            "Worldwide release",
+            "Social media campaign",
+            "Community engagement",
+            "First-week metrics analysis"
           ],
           "success_metrics": [
-            "10,000+ downloads Week 1",
-            "4.5+ star rating on stores",
-            "20%+ conversion rate demo to premium",
-            "Featured by Apple/Google (stretch goal)"
+            "5,000+ downloads Week 1",
+            "4.5+ star rating",
+            "25%+ conversion rate",
+            "Breakeven within 3 months"
           ]
         }
       ]

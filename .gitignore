@@ -1,14 +1,4 @@
-# Unity generated files - Complete list
-src/Nexus/
-src/Nexus/Library/
-src/Nexus/Temp/
-src/Nexus/obj/
-src/Nexus/Logs/
-src/Nexus/UserSettings/
-src/Nexus/MemoryCaptures/
-src/Nexus/.vscode/
-
-# General Unity
+# Unity Generated Files (if we ever need Unity again)
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -16,31 +6,15 @@ src/Nexus/.vscode/
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
-
-# Unity3D File Types - but KEEP our project files
 *.unity
-*.unityproj
 *.sln
 *.csproj
 
-# But KEEP our project files
-!/src/Assets/
-!/src/Assets/**/*.meta
-!/src/ProjectSettings/
-!/src/ProjectSettings/**/*.meta
-!/src/Packages/
-!/src/Packages/**/*.meta
-!/src/Nexus.slnx
-
-# Visual Studio / Rider files
+# Visual Studio / Rider #
 .vs/
 .idea/
 
-# VS Code (Unity specific)
-.vscode/
-*.code-workspace
-
-# OS generated files
+# OS Generated Files #
 .DS_Store
 .DS_Store?
 ._*
@@ -49,22 +23,25 @@ src/Nexus/.vscode/
 ehthumbs.db
 Thumbs.db
 
-# CTO Oracle - Don't commit session data
-/context/current_session.json
-/context/session_log.json
-/context/*.log
+# Claude Code #
+.claude/
 
-# Python
+# Python #
 __pycache__/
 *.pyc
 *.pyo
 
-# Temp files
+# CTO Oracle - Don't commit session data #
+/context/current_session.json
+/context/session_log.json
+/context/*.log
+
+# Temp files #
 *.tmp
 *.temp
 ~*
 
-# Build outputs
+# Build outputs #
 /build/
 /dist/
 /bin/

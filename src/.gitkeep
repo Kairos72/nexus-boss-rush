@@ -1,9 +1,0 @@
-# This directory will contain the Unity project
-
-Once we initialize the Unity project, this directory will contain:
-- Assets/ (all game assets and scripts)
-- Packages/ (Unity package dependencies)
-- ProjectSettings/ (Unity configuration)
-- And other Unity-specific files
-
-For now, this is a placeholder to maintain the directory structure.

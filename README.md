@@ -1,10 +1,10 @@
-# Nexus: Boss Rush
+# Nexus: Trial of Champions
 
-*Premium Mobile Roguelike - FFXIV raids meet Hades*
+*Premium Text-Based Roguelike - Dark Souls meets Reigns meets Slay the Spire*
 
 ## Quick Start
 
-Welcome to Nexus: Boss Rush development workspace. This is our command center for building a premium mobile game that respects players.
+Welcome to Nexus: Trial of Champions development workspace. This is our command center for building a premium text-based mobile game that respects players.
 
 ### The Team
 - **CEO (Partner)**: Vision, strategy, community building
@@ -40,13 +40,14 @@ The CTO Oracle maintains complete project context to prevent the complexity issu
 
 **Phase:** Pre-Production - Setup
 **Focus:** Establishing workspace and CTO Oracle system
-**Next Priority:** Initialize Unity project and begin combat prototype
+**Next Priority:** Build simple text prototype of Stone Guardian fight
+**Pivot:** Switched to text-based design (Nov 16, 2025)
 
 ### Key Principles
 
-1. **Mobile First**: Every decision optimized for mobile
-2. **Premium Quality**: No compromises on player experience
-3. **Respect Player Time**: No grinding, no predatory mechanics
+1. **Text-Based First**: Every decision optimized for text gameplay
+2. **Strategic Depth**: Complex decisions, simple interface
+3. **Respect Player Time**: 25-35 minute runs, no grinding
 4. **AI-Powered Development**: Leverage AI for speed and consistency
 5. **Context Awareness**: Never lose project understanding
 
@@ -78,11 +79,12 @@ cto.update_progress("M1", "In Progress", "Unity setup complete, starting charact
 
 ## Game Vision
 
-**Nexus** is a premium mobile roguelike where players face 10 unique bosses in 30-minute skill-based runs. No grinding, no gacha, no predatory monetization - just pure skill expression.
+**Nexus: Trial of Champions** is a premium mobile text-based roguelike where players face 10 legendary champions through strategic choices. Players make tactical decisions (Attack, Defend, Dodge, Analyze) to survive deadly patterns. Die, learn, master, conquer—through compelling narrative combat.
 
-- **Free Demo**: 3 bosses, 1 class
-- **Premium Unlock**: $12.99 for full game
-- **Target**: 100-150K downloads, 20-30% conversion
+- **Free Demo**: 3 bosses (Stone Guardian, Flame Archon, Ice Witch), 1 class
+- **Premium Unlock**: $6.99 for full game
+- **Target**: 50-100K downloads, 25-35% conversion
+- **Experience**: Dark Souls pattern learning meets Reigns swipes meets Slay the Spire depth
 
 ## Development Approach
 
@@ -96,5 +98,7 @@ Learned from Veritas:
 ---
 
 *Project Start: November 15, 2025*
-*Target Launch: August 2026*
+*Pivot to Text-Based: November 16, 2025*
+*Target Launch: April-May 2026*
 *Development Team: Human + AI Collaboration*
+*Budget: $700 - $1,500 (dramatically reduced from $50K+)*
