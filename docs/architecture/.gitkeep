@@ -1,0 +1,13 @@
+# Architecture Documentation
+
+This directory will contain detailed architecture documents as the project evolves:
+
+- System Architecture Overview
+- Combat System Design
+- Boss AI Architecture
+- Mobile Performance Guidelines
+- Data Persistence Design
+- Network Architecture (if needed)
+- Security Considerations
+
+Documents will be added as we implement each system.
