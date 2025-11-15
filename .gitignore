@@ -1,23 +1,24 @@
-# Unity specific files
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
+# Unity generated files
+/Nexus/Library/
+/Nexus/Temp/
+/Nexus/obj/
+/Nexus/Logs/
+/Nexus/UserSettings/
+/Nexus/MemoryCaptures/
 
 # Unity3D File Types
 *.unity
 *.unityproj
 *.sln
 *.csproj
-*.prefab
-*.anim
-*.controller
-*.mat
-*.asset
-*.meta
+
+# But KEEP our project files
+!/src/Assets/
+!/src/Assets/**/*.meta
+!/src/ProjectSettings/
+!/src/ProjectSettings/**/*.meta
+!/src/Packages/
+!/src/Packages/**/*.meta
 
 # Visual Studio / Rider files
 .vs/
@@ -35,67 +36,18 @@ Thumbs.db
 # CTO Oracle - Don't commit session data
 /context/current_session.json
 /context/session_log.json
-/context/*.log
 
-# But keep documentation
-!/docs/
-!/cto_prompts/
-!/README.md
-
-# Temporary files
-*.tmp
-*.temp
-~*
-
-# Logs
-*.log
-
-# Cache directories
-cache/
+# Python
 __pycache__/
 *.pyc
 *.pyo
 
-# Node modules (if we add web tools)
-node_modules/
+# Temp files
+*.tmp
+*.temp
+~*
 
 # Build outputs
 /build/
 /dist/
 /bin/
-/obj/
-
-# Unity Cloud Build
-.gitlab-ci.yml
-
-# Extracted files
-*.zip
-*.rar
-*.7z
-
-# Large binary assets (use LFS if needed)
-*.mp4
-*.mov
-*.avi
-*.wav
-*.mp3
-*.psd
-*.tga
-*.dds
-*.exr
-*.hdr
-
-# PlayFab
-/playfab/
-
-# Test results
-*.test-results
-coverage/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Package files
-*.package
