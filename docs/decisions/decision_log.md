@@ -69,6 +69,54 @@ Every decision is evaluated against:
 **Status:** Design complete, implementation roadmap created
 **Document:** Advanced Features Design (docs/advanced_features_design.md)
 
+### Decision #007 - Pattern Chains Feature Analysis
+**Date:** November 16, 2025
+**Question:** What is the implementation complexity and value of adding Pattern Chains as the primary advanced feature?
+**Decision:** Pattern Chains should be the flagship advanced feature, implemented from Boss 4 onward
+**Reasoning:** Pattern Chains transforms Nexus from simple pattern matching into predictive gameplay. Creates "Anticipatory Pattern Mastery" where players outthink bosses rather than just react. Medium-High complexity (7/10) but delivers genre-defining depth that justifies premium pricing.
+**Technical Challenges Identified:**
+- State machine complexity: Need to track 2-3 previous player actions
+- Memory system requirements for chain detection
+- UI communication: Subtle text cues to signal chain activation
+- Balance: Chains must be learnable, not random
+**Key Benefits:**
+- Creates intelligent boss conversations ("The Guardian PREDICTED your move!")
+- Infinite depth from simple mechanics (60+ unique chains across 10 bosses)
+- Perfect for mobile text (no animation, pure prediction)
+- Competitive advantage: "Fighting game depth in text-based combat"
+**Implementation Strategy:**
+- Phase 1: Chain detection system (Week 1)
+- Phase 2: Stone Guardian chains (Weeks 2-3)
+- Phase 3: Advanced chains for later bosses (Week 4)
+- Phase 4: Polish and achievement integration (Week 5)
+**Impact:** Establishes Nexus as the thinking player's roguelike. Creates unique market position against reflex-based competitors. Justifies $6.99 premium price point through strategic depth.
+**Status:** Analysis complete, ready for implementation planning
+
+### Decision #008 - Passion Project Commitment
+**Date:** November 16, 2025
+**Question:** Given the honest assessment of market realities, what is the official project approach?
+**Decision:** Officially reclassify Nexus as a passion project with reduced scope and timeline flexibility
+**Reasoning:** Financial analysis revealed 3D version would be certain financial ruin (95% failure probability). Text-based version remains viable but passion project approach removes pressure, allows creative freedom, and acknowledges real-world constraints.
+**Project Changes:**
+- Timeline: Flexible, work-as-possible rather than strict March-April 2026
+- Budget: $700 absolute maximum, no additional marketing spend
+- Team: Human CEO + AI collaboration, no external hires
+- Success metrics redefined: Impact over income, community over scale
+- Development cadence: Asynchronous, respectful of personal circumstances
+**Benefits of Passion Project Status:**
+- Zero financial risk
+- Creative freedom from market pressure
+- Focus on innovation and artistic expression
+- Community building without commercial motives
+- Experimental feature playground (Pattern Chains, Echo Patterns)
+**New Success Definition:**
+- Create something unique that 500-1,000 players genuinely love
+- Validate AI-assisted development methodology
+- Build foundation for future projects
+- Demonstrate that small teams can create meaningful games
+**Impact:** Transforms project from business venture to artistic endeavor. Removes pressure while maintaining all creative aspirations. Ensures project completion regardless of commercial reception.
+**Status:** Implemented - project now officially passion-driven
+
 ---
 
 ## Pending Decisions
@@ -86,6 +134,7 @@ Every decision is evaluated against:
 - Which devices to target for performance baseline?
 
 ### Feature Implementation Priority
+- Pattern Chains complexity analysis complete (Medium-High 7/10)
 - Should Pattern Chains be implemented from boss 2, or added later as update?
 - How to balance Echo Patterns adaptation (prevent impossible situations)?
 - Daily Trials frequency - daily or weekly rotation?
