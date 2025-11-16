@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Nexus: Trial of Champions - Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .boss-header {
+            background: linear-gradient(180deg, #2a1a1a 0%, #1a0a0a 100%);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #444;
+        }
+
+        .boss-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .boss-hp-container {
+            width: 100%;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .boss-hp-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff3838 0%, #ff6b6b 100%);
+            transition: width 0.3s ease;
+        }
+
+        .boss-hp-text {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .boss-phase {
+            font-size: 14px;
+            color: #ffd700;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .boss-portrait {
+            width: 200px;
+            height: 200px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #444;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .boss-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.2);
+        }
+
+        .boss-portrait.enraged img {
+            filter: grayscale(0%) contrast(1.3) saturate(1.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .boss-phase.enraged {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); }
+            to { box-shadow: 0 0 20px rgba(255, 107, 107, 0.8); }
+        }
+
+        .combat-text {
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .player-status {
+            background: #1a1a1a;
+            padding: 15px;
+            border-top: 2px solid #444;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .status-label {
+            font-size: 14px;
+            color: #aaa;
+            width: 30px;
+        }
+
+        .status-container {
+            flex-grow: 1;
+            height: 16px;
+            background: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 10px;
+        }
+
+        .status-bar-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .hp-fill { background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%); }
+        .mp-fill { background: linear-gradient(90deg, #2196F3 0%, #03A9F4 100%); }
+
+        .status-text {
+            font-size: 12px;
+            color: #aaa;
+            min-width: 50px;
+            text-align: right;
+        }
+
+        .choices {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-button {
+            background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            border: 2px solid #555;
+            color: #e0e0e0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .choice-button:hover {
+            background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            border-color: #666;
+            transform: translateY(-1px);
+        }
+
+        .choice-button:active {
+            transform: translateY(0);
+        }
+
+        .choice-button.attack {
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .choice-button.defend {
+            border-left: 5px solid #4CAF50;
+        }
+
+        .choice-button.dodge {
+            border-left: 5px solid #2196F3;
+        }
+
+        .choice-button.utility {
+            border-left: 5px solid #FFD700;
+        }
+
+        .choice-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .choice-description {
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        .defeat-overlay, .victory-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .overlay-content {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #444;
+            max-width: 90%;
+        }
+
+        .defeat-overlay h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+
+        .victory-overlay h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .restart-button {
+            background: #3a3a3a;
+            border: 2px solid #555;
+            color: #e0e0e0;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .damage-number {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+        }
+
+        .damage-number.damage { color: #ff6b6b; }
+        .damage-number.heal { color: #4CAF50; }
+        .damage-number.critical { color: #ff3838; font-size: 30px; }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="boss-header">
+        <div class="boss-name" id="bossName">THE STONE GUARDIAN</div>
+        <div class="boss-hp-container">
+            <div class="boss-hp-bar" id="bossHpBar" style="width: 100%"></div>
+        </div>
+        <div class="boss-hp-text" id="bossHpText">HP: 100/100</div>
+        <div class="boss-phase" id="bossPhase">Phase 1</div>
+    </div>
+
+    <div class="boss-portrait" id="bossPortrait">
+        <img src="../9d3a7a2d-6f9f-4fa9-b395-36180e1a7c76.jfif" alt="The Stone Guardian">
+    </div>
+
+    <div class="combat-text" id="combatText">
+        Ancient runes glow across cracked stone armor. The Guardian's hollow eyes lock onto you. It moves—slowly, but with terrible purpose.
+        <br><br>
+        <strong>[Continue]</strong>
+    </div>
+
+    <div class="player-status">
+        <div class="status-bar">
+            <span class="status-label">HP</span>
+            <div class="status-container">
+                <div class="status-bar-fill hp-fill" id="playerHpBar" style="width: 100%"></div>
+            </div>
+            <span class="status-text" id="playerHpText">100/100</span>
+        </div>
+        <div class="status-bar">
+            <span class="status-label">MP</span>
+            <div class="status-container">
+                <div class="status-bar-fill mp-fill" id="playerMpBar" style="width: 100%"></div>
+            </div>
+            <span class="status-text" id="playerMpText">80/80</span>
+        </div>
+    </div>
+
+    <div class="choices" id="choices" style="display: none;">
+        <!-- Buttons will be generated here -->
+    </div>
+
+    <div class="defeat-overlay" id="defeatOverlay">
+        <div class="overlay-content">
+            <h2>💀 DEFEATED 💀</h2>
+            <p>The Stone Guardian stands over your broken body. The trial ends.</p>
+            <p>You learned:</p>
+            <ul style="text-align: left; margin-top: 10px;">
+                <li>Attacking during windups is deadly</li>
+                <li>Ground Pound can't be blocked effectively</li>
+                <li>Rolling has i-frames but timing matters</li>
+            </ul>
+            <button class="restart-button" onclick="restartGame()">Try Again</button>
+        </div>
+    </div>
+
+    <div class="victory-overlay" id="victoryOverlay">
+        <div class="overlay-content">
+            <h2>💀 VICTORY! 💀</h2>
+            <p>The Guardian's core shatters! Stone crumbles. The ancient sentinel falls.</p>
+            <button class="restart-button" onclick="restartGame()">Fight Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            boss: {
+                name: "THE STONE GUARDIAN",
+                hp: 100,
+                maxHp: 100,
+                phase: 1,
+                nextPattern: null,
+                isVulnerable: false
+            },
+            player: {
+                hp: 100,
+                maxHp: 100,
+                mp: 80,
+                maxMp: 80,
+                isDefending: false,
+                lastAction: null
+            },
+            combat: {
+                turn: 1,
+                isAnimating: false,
+                awaitingInput: false,
+                firstAttack: true
+            }
+        };
+
+        // Boss Patterns
+        const bossPatterns = {
+            phase1: [
+                {
+                    id: 'overhead_smash',
+                    name: 'OVERHEAD SMASH',
+                    telegraph: 'The Guardian plants its feet. Its right fist begins to rise—slowly, deliberately—above its head.',
+                    correctResponse: ['dodge_left', 'dodge_right'],
+                    wrongDamage: 60,
+                    wrongResponse: 'You dash forward—The Guardian\'s fist CRASHES down as you approach!',
+                    successText: 'You roll to safety as the fist SMASHES where you stood!'
+                },
+                {
+                    id: 'ground_pound',
+                    name: 'GROUND POUND',
+                    telegraph: 'The Guardian raises BOTH fists now. The ground trembles beneath you.',
+                    correctResponse: ['dodge_back'],
+                    wrongDamage: 50,
+                    blockDamage: 25,
+                    wrongResponse: 'BOOM! The Guardian\'s fists slam the earth!',
+                    successText: 'You leap backward! Shockwaves ripple where you stood!'
+                },
+                {
+                    id: 'rock_throw',
+                    name: 'ROCK THROW',
+                    telegraph: 'The Guardian reaches back, tearing a chunk of rubble from the arena floor.',
+                    correctResponse: ['dodge_left', 'dodge_right'],
+                    wrongDamage: 30,
+                    wrongResponse: 'The rock sails through the air—CRASH!',
+                    successText: 'You dodge aside as the rock smashes into the wall!'
+                }
+            ],
+            phase2: [
+                {
+                    id: 'double_smash',
+                    name: 'DOUBLE SMASH',
+                    telegraph: 'The Guardian roars! Both fists glow with crimson energy. It begins to pound relentlessly!',
+                    correctResponse: ['defend'],
+                    wrongDamage: 40,
+                    wrongResponse: 'The assault is overwhelming! You\'re battered by stone fury!',
+                    successText: 'You brace yourself, weathering the storm of impacts!'
+                },
+                {
+                    id: 'enraged_charge',
+                    name: 'ENRAGED CHARGE',
+                    telegraph: 'With a guttural roar, the Guardian lowers its shoulder and charges!',
+                    correctResponse: ['dodge_left', 'dodge_right'],
+                    wrongDamage: 70,
+                    wrongResponse: 'The Guardian SLAMS into you! You\'re sent flying!',
+                    successText: 'You sidestep at the last moment! The Guardian crashes into the wall!'
+                }
+            ]
+        };
+
+        // Initialize game
+        function init() {
+            updateUI();
+            // Select first pattern immediately
+            gameState.boss.nextPattern = bossPatterns.phase1[0]; // Always start with overhead smash
+            setTimeout(() => {
+                showCombatText('The Guardian plants its feet. Its right fist begins to rise—slowly, deliberately—above its head.<br><br><em>You\'ve seen this before... on your first run.</em>');
+                setTimeout(() => showChoices(['attack', 'defend', 'dodge']), 2000);
+            }, 2000);
+        }
+
+        // Show choices
+        function showChoices(availableChoices) {
+            gameState.combat.awaitingInput = true;
+            const choicesDiv = document.getElementById('choices');
+            choicesDiv.innerHTML = '';
+            choicesDiv.style.display = 'flex';
+
+            const choices = {
+                attack: {
+                    title: '⚔️ ATTACK - Quick Strike',
+                    description: 'Fast damage, low risk',
+                    class: 'attack',
+                    action: () => playerAction('attack')
+                },
+                heavy_attack: {
+                    title: '⚔️ ATTACK - Heavy Strike',
+                    description: 'High damage, but vulnerable',
+                    class: 'attack',
+                    action: () => playerAction('heavy_attack')
+                },
+                defend: {
+                    title: '🛡️ DEFEND - Block',
+                    description: 'Reduce incoming damage by 50%',
+                    class: 'defend',
+                    action: () => playerAction('defend')
+                },
+                dodge: {
+                    title: '🏃 DODGE - Roll Away',
+                    description: 'Evade the attack',
+                    class: 'dodge',
+                    action: () => playerAction('dodge_right') // Default to right dodge
+                },
+                dodge_left: {
+                    title: '🏃 DODGE - Roll Left',
+                    description: 'Evade to the left',
+                    class: 'dodge',
+                    action: () => playerAction('dodge_left')
+                },
+                dodge_right: {
+                    title: '🏃 DODGE - Roll Right',
+                    description: 'Evade to the right',
+                    class: 'dodge',
+                    action: () => playerAction('dodge_right')
+                },
+                dodge_back: {
+                    title: '🏃 DODGE - Backstep',
+                    description: 'Create distance',
+                    class: 'dodge',
+                    action: () => playerAction('dodge_back')
+                }
+            };
+
+            availableChoices.forEach(choiceId => {
+                if (choices[choiceId]) {
+                    const button = document.createElement('button');
+                    button.className = `choice-button ${choices[choiceId].class}`;
+                    button.innerHTML = `
+                        <span class="choice-title">${choices[choiceId].title}</span>
+                        <span class="choice-description">${choices[choiceId].description}</span>
+                    `;
+                    button.onclick = choices[choiceId].action;
+                    choicesDiv.appendChild(button);
+                }
+            });
+        }
+
+        // Player action
+        function playerAction(action) {
+            if (!gameState.combat.awaitingInput || gameState.combat.isAnimating) {
+                return;
+            }
+
+            gameState.combat.awaitingInput = false;
+            gameState.combat.isAnimating = true;
+            gameState.player.lastAction = action;
+            gameState.player.isDefending = (action === 'defend');
+
+            document.getElementById('choices').style.display = 'none';
+
+            // Check if we're in vulnerable state
+            if (gameState.boss.isVulnerable) {
+                const damage = action === 'heavy_attack' ? 60 : 40;
+                showCombatText(`You strike the exposed armor! ⚔️ ${damage} damage!`);
+                dealDamage('boss', damage);
+                gameState.boss.isVulnerable = false;
+                gameState.combat.firstAttack = false;
+                setTimeout(() => nextTurn(), 1500);
+                return;
+            }
+
+            // Execute boss pattern
+            executeBossPattern(action);
+        }
+
+        // Execute boss pattern
+        function executeBossPattern(playerAction) {
+            // Use the pattern that was selected for this turn
+            const pattern = gameState.boss.nextPattern;
+            if (!pattern) return;
+
+            // Check if player responded correctly
+            let isCorrect = false;
+
+            // Check direct match
+            if (pattern.correctResponse.includes(playerAction)) {
+                isCorrect = true;
+            }
+            // Check if generic dodge matches any correct dodge
+            else if (playerAction === 'dodge_right' && pattern.correctResponse.includes('dodge_right')) {
+                isCorrect = true;
+            }
+            // Check if generic dodge matches any correct dodge
+            else if (playerAction === 'dodge_left' && pattern.correctResponse.includes('dodge_left')) {
+                isCorrect = true;
+            }
+
+            if (isCorrect) {
+                // Correct response
+                showCombatText(pattern.successText + '<br><br><em>✅ Perfect dodge!</em>');
+
+                // Check if attack
+                if (playerAction.startsWith('attack')) {
+                    const damage = playerAction === 'heavy_attack' ? 40 : 20;
+                    dealDamage('boss', damage);
+                }
+
+                // Check for vulnerable state
+                if (Math.random() < 0.3) {
+                    gameState.boss.isVulnerable = true;
+                    // Reset animation state to allow new actions
+                    gameState.combat.isAnimating = false;
+                    setTimeout(() => {
+                        showCombatText('The Guardian\'s arm is stuck in the ground! It\'s vulnerable!');
+                        showChoices(['attack', 'heavy_attack']);
+                    }, 1000);
+                    return;
+                }
+            } else {
+                // Wrong response
+                showCombatText(pattern.wrongResponse);
+
+                let damage = pattern.wrongDamage;
+                if (gameState.player.isDefending && pattern.blockDamage) {
+                    damage = pattern.blockDamage;
+                    showCombatText(`💥 Your block absorbs some force... You take ${damage} damage!`);
+                } else {
+                    showCombatText(`💀 CRITICAL HIT! You take ${damage} damage!`);
+                }
+
+                dealDamage('player', damage);
+            }
+
+            setTimeout(() => nextTurn(), 2000);
+        }
+
+        // Deal damage
+        function dealDamage(target, amount) {
+            if (target === 'boss') {
+                gameState.boss.hp = Math.max(0, gameState.boss.hp - amount);
+                showDamageNumber(amount, false);
+
+                // Check phase transition
+                if (gameState.boss.hp <= 50 && gameState.boss.phase === 1) {
+                    gameState.boss.phase = 2;
+                    document.getElementById('bossPhase').textContent = 'Phase 2 - ENRAGED';
+                    document.getElementById('bossPortrait').classList.add('enraged');
+                    showCombatText('Chunks of stone armor fall away. The Guardian\'s core glows with molten fury.<br><br>🔥 PHASE 2: ENRAGED 🔥');
+                }
+
+                // Check victory
+                if (gameState.boss.hp <= 0) {
+                    setTimeout(() => showVictory(), 1000);
+                }
+            } else {
+                gameState.player.hp = Math.max(0, gameState.player.hp - amount);
+                showDamageNumber(amount, true);
+
+                // Check defeat
+                if (gameState.player.hp <= 0) {
+                    setTimeout(() => showDefeat(), 1000);
+                }
+            }
+
+            updateUI();
+        }
+
+        // Show damage number
+        function showDamageNumber(damage, isPlayer) {
+            const number = document.createElement('div');
+            number.className = `damage-number ${isPlayer ? 'damage' : 'heal'} ${damage >= 40 ? 'critical' : ''}`;
+            number.textContent = isPlayer ? `-${damage}` : `-${damage}`;
+            number.style.left = isPlayer ? '50%' : '50%';
+            number.style.top = '50%';
+            document.body.appendChild(number);
+
+            setTimeout(() => number.remove(), 1000);
+        }
+
+        // Next turn
+        function nextTurn() {
+            gameState.combat.turn++;
+            gameState.player.isDefending = false;
+            gameState.combat.isAnimating = false;
+
+            if (gameState.boss.hp > 0 && gameState.player.hp > 0) {
+                // Select random pattern for this turn
+                const phase = gameState.boss.phase === 1 ? bossPatterns.phase1 : bossPatterns.phase2;
+                const pattern = phase[Math.floor(Math.random() * phase.length)];
+                gameState.boss.nextPattern = pattern;
+
+                showCombatText(pattern.telegraph);
+
+                // Determine available choices based on upcoming pattern
+                let choices = ['attack', 'defend'];
+                if (pattern.id === 'overhead_smash' || pattern.id === 'rock_throw') {
+                    choices.push('dodge_left', 'dodge_right');
+                } else if (pattern.id === 'ground_pound') {
+                    choices.push('dodge_back');
+                } else if (pattern.id === 'enraged_charge') {
+                    choices.push('dodge_left', 'dodge_right');
+                } else if (pattern.id === 'double_smash') {
+                    choices.push('defend');
+                } else {
+                    // Default choices
+                    choices.push('dodge_left', 'dodge_right');
+                }
+
+                setTimeout(() => showChoices(choices), 1500);
+            }
+        }
+
+        // Show combat text
+        function showCombatText(text) {
+            document.getElementById('combatText').innerHTML = text;
+        }
+
+        // Update UI
+        function updateUI() {
+            // Boss HP
+            const bossHpPercent = (gameState.boss.hp / gameState.boss.maxHp) * 100;
+            document.getElementById('bossHpBar').style.width = bossHpPercent + '%';
+            document.getElementById('bossHpText').textContent = `HP: ${gameState.boss.hp}/${gameState.boss.maxHp}`;
+
+            // Player HP
+            const playerHpPercent = (gameState.player.hp / gameState.player.maxHp) * 100;
+            document.getElementById('playerHpBar').style.width = playerHpPercent + '%';
+            document.getElementById('playerHpText').textContent = `${gameState.player.hp}/${gameState.player.maxHp}`;
+
+            // Player MP
+            const playerMpPercent = (gameState.player.mp / gameState.player.maxMp) * 100;
+            document.getElementById('playerMpBar').style.width = playerMpPercent + '%';
+            document.getElementById('playerMpText').textContent = `${gameState.player.mp}/${gameState.player.maxMp}`;
+        }
+
+        // Show defeat
+        function showDefeat() {
+            document.getElementById('defeatOverlay').style.display = 'flex';
+        }
+
+        // Show victory
+        function showVictory() {
+            showCombatText('💀 THE STONE GUARDIAN DEFEATED! 💀<br><br>Stone crumbles. The ancient sentinel falls.');
+            setTimeout(() => {
+                document.getElementById('victoryOverlay').style.display = 'flex';
+            }, 2000);
+        }
+
+        // Restart game
+        function restartGame() {
+            gameState = {
+                boss: {
+                    name: "THE STONE GUARDIAN",
+                    hp: 100,
+                    maxHp: 100,
+                    phase: 1,
+                    nextPattern: null,
+                    isVulnerable: false
+                },
+                player: {
+                    hp: 100,
+                    maxHp: 100,
+                    mp: 80,
+                    maxMp: 80,
+                    isDefending: false,
+                    lastAction: null
+                },
+                combat: {
+                    turn: 1,
+                    isAnimating: false,
+                    awaitingInput: false,
+                    firstAttack: true
+                }
+            };
+
+            document.getElementById('defeatOverlay').style.display = 'none';
+            document.getElementById('victoryOverlay').style.display = 'none';
+            document.getElementById('bossPhase').textContent = 'Phase 1';
+            document.getElementById('bossPortrait').classList.remove('enraged');
+            document.getElementById('choices').style.display = 'none';
+
+            init();
+        }
+
+        // Start the game
+        init();
+    </script>
+</body>
+</html>
