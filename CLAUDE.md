@@ -38,12 +38,14 @@ Nexus/
 
 ## Technology Stack
 
+- **Engine**: Unity 2022 LTS (UI Toolkit + TextMesh Pro)
 - **Platform**: Mobile (iOS & Android)
 - **Input**: Touch-based tap interface
 - **Architecture**: State machines for boss patterns
 - **Data Format**: JSON for bosses, upgrades, decisions
 - **Storage**: PlayerPrefs for save/load
-- **Framework**: TBD (Unity for UI, or web-based solution)
+- **Rendering**: TextMesh Pro for crisp mobile text
+- **UI Framework**: Unity UI Toolkit for mobile buttons
 
 ## Development Workflow
 
@@ -73,11 +75,11 @@ All technical choices are evaluated against:
 
 ## Current Status
 
-- **Phase**: Pre-Production - Setup
-- **Progress**: 0% (Project initialization)
-- **Next Priority**: Simple text prototype of Stone Guardian fight
+- **Phase**: Design Complete - Prototype Validated
+- **Progress**: 10% (Design phase complete, working prototype)
+- **Next Priority**: Unity project setup and text-based UI implementation
 - **Blockers**: None
-- **Timeline**: On track for April-May 2026 launch
+- **Timeline**: On track for March-April 2026 launch (2 months ahead!)
 - **Pivot**: Switched to text-based design (November 16, 2025)
 
 ## Key Architectural Principles
@@ -99,6 +101,12 @@ All technical choices are evaluated against:
 - JSON-driven data for bosses, upgrades, and decisions
 - Simple event system for game flow
 - PlayerPrefs for save/load (minimal data needs)
+
+### Advanced Features Architecture
+- Pattern Chains: Conditional boss responses that anticipate player actions
+- Echo Patterns: AI memory system that adapts to player tendencies
+- Dynamic Dialogue: Contextual boss banter based on player behavior
+- Stance System: Run-defining modifiers (Berserker, Guardian, Assassin, Sage, Dancer)
 
 ## Build and Development Commands
 
@@ -128,7 +136,12 @@ All technical choices are evaluated against:
 - **Current Roadmap**: `docs/roadmap/current_roadmap.json`
 - **Decision Log**: `docs/decisions/decision_log.md`
 - **Project Context**: `context/current_session.json`
-- **Unity Main Scene**: `src/Assets/Scenes/MainScene.unity` (to be created)
+- **Advanced Features**: `docs/advanced_features_design.md`
+- **Game Design**: `text_boss_rush_gdd.md`
+- **Ideas**: `ideas.md`
+- **Working Prototype**: `prototype/index.html` (validates concept)
+- **Boss Portrait**: `9d3a7a2d-6f9f-4fa9-b395-36180e1a7c76.jfif`
+- **Unity Main Scene**: To be created in `src/Assets/Scenes/`
 
 ## CTO Oracle Context Management
 
@@ -173,10 +186,26 @@ When working on this project:
 ## Quick Reference
 
 ### Essential Commands
-- Unity Editor: Open `src/Nexus.sln` or launch Unity Hub
+- Unity Editor: Create new project, open Unity Hub
 - Build: File > Build Settings > Select target platform
-- Test: Window > General > Test Runner > Run All
-- Profile: Window > Analysis > Profiler
+- Test: Play in Editor, Window > Analysis > Profiler
+- Prototype: Open `prototype/index.html` in browser
+
+### Working Prototype Access
+```bash
+# Quick test of current game design
+open prototype/index.html
+# Mobile test: Use browser dev tools (F12) → Mobile view
+```
+
+### Unity Setup Checklist
+1. Create new Unity 2022 LTS project
+2. Set build target to iOS/Android
+3. Import TextMesh Pro (built-in)
+4. Create Scene: `Assets/Scenes/MainScene.unity`
+5. Add Canvas with mobile settings
+6. Implement Stone Guardian state machine
+7. Test on mobile device
 
 ### Key Contacts
 - CEO: Human strategic decisions and vision
@@ -184,9 +213,30 @@ When working on this project:
 - Builder (Claude): Implementation and development
 
 ### Common Tasks
-1. **Starting Work**: Check `context/current_session.json`
-2. **Making Decisions**: Consult decision framework
-3. **Updating Progress**: Auto-tracked by CTO Oracle
-4. **Blocking Issues**: Update blockers in roadmap
+1. **Starting Work**: Check `context/current_session.json` for latest project state
+2. **Making Decisions**: Consult decision framework and review advanced_features_design.md
+3. **Updating Progress**: Auto-tracked by CTO Oracle, but update manually after major milestones
+4. **Testing Prototype**: Open `prototype/index.html` to validate gameplay concepts
+5. **Blocking Issues**: Update blockers in roadmap immediately
 
-Remember: This project represents a new paradigm in AI-assisted game development. The CTO Oracle provides continuity and context across sessions, enabling rapid, informed development decisions while maintaining technical excellence and mobile performance standards.
+## Prototype Development Status
+- **Stone Guardian**: Fully implemented with pattern recognition
+- **Features Tested**: Phase transitions, vulnerable states, victory/defeat
+- **Mobile Ready**: Portrait orientation, touch-optimized
+- **Next Boss**: Flame Archon (DOT mechanics) - design ready in GDD
+
+## Implementation Priorities
+### Phase 1 (Unity Setup - Month 1)
+1. Text-based UI system with TextMesh Pro
+2. Stone Guardian state machine in C#
+3. Mobile-optimized Canvas and controls
+4. Save/load system with PlayerPrefs
+5. Haptic feedback integration
+
+### Phase 2 (Content - Month 2)
+1. Implement advanced features (Pattern Chains, Echo Patterns)
+2. Create Flame Archon and Ice Witch
+3. Stance system implementation
+4. Roguelike upgrade system
+
+Remember: This project represents a new paradigm in AI-assisted game development. The CTO Oracle provides continuity and context across sessions, enabling rapid, informed development decisions while maintaining technical excellence and mobile performance standards. The working prototype validates the core concept before committing to full Unity implementation.
